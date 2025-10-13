@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}View Watermark{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Watermark Details</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h5>File Information</h5>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>File Name:</th>
+                                <td>{{ watermark.file_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>File Type:</th>
+                                <td>{{ watermark.file_type }}</td>
+                            </tr>
+                            <tr>
+                                <th>Created:</th>
+                                <td>{{ watermark.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Watermark Information</h5>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Watermark ID:</th>
+                                <td>{{ watermark.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Protection:</th>
+                                <td><span class="badge bg-success">AES-256 + LSB</span></td>
+                            </tr>
+                            <tr>
+                                <th>Integrity:</th>
+                                <td><span class="badge bg-info">SHA-3 Protected</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-4">
+                    <a href="{{ url_for('watermark.download_watermark', watermark_id=watermark.id) }}" class="btn btn-success">
+                        Download Watermarked File
+                    </a>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                        Back to Dashboard
+                    </a>
+                </div>
+                
+                <div class="alert alert-info">
+                    <h5>Watermark Security Information</h5>
+                    <p>This file is protected with:</p>
+                    <ul>
+                        <li><strong>LSB Steganography:</strong> Invisible watermarking embedded in image data</li>
+                        <li><strong>AES-256 Encryption:</strong> Military-grade encryption of ownership data</li>
+                        <li><strong>SHA-3 Hashing:</strong> Cryptographic integrity verification</li>
+                    </ul>
+                    <p>Your ownership information is securely embedded in this file and can be verified using our verification system.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

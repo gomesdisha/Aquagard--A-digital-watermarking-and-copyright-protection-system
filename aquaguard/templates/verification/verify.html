@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Verify Watermark{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Verify Watermarked File</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Select File to Verify</label>
+                        <input type="file" class="form-control" id="file" name="file" required>
+                        <div class="form-text">Upload a file to check if it contains an AquaGuard watermark</div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Verify File</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

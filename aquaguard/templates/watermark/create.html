@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Watermark{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Create Digital Watermark</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Select File to Watermark</label>
+                        <input type="file" class="form-control" id="file" name="file" required>
+                        <div class="form-text">Supported formats: PNG, JPG, JPEG, GIF, BMP, TIFF, PDF</div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Create Watermark</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">About Digital Watermarking</h5>
+            </div>
+            <div class="card-body">
+                <p>AquaGuard uses advanced techniques to protect your digital content:</p>
+                <ul>
+                    <li><strong>LSB Steganography:</strong> Embeds watermark in the least significant bits of image data</li>
+                    <li><strong>AES-256 Encryption:</strong> Military-grade encryption for watermark data</li>
+                    <li><strong>SHA-3 Hashing:</strong> Ensures content integrity and detects tampering</li>
+                </ul>
+                <p>Your watermarked files will contain encrypted ownership information that can be verified later.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

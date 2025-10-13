@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row align-items-center">
+    <div class="col-lg-6">
+        <h1 class="display-4 fw-bold">AquaGuard</h1>
+        <h2 class="text-primary">Digital Watermarking & Copyright Protection System</h2>
+        <p class="lead my-4">
+            Secure your digital intellectual property with advanced LSB steganography, 
+            AES-256 encryption, and SHA-3 hashing for content integrity verification.
+        </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('watermark.create_watermark') }}" class="btn btn-primary btn-lg px-4 me-md-2">Create Watermark</a>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-lg px-4">Dashboard</a>
+            {% else %}
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg px-4 me-md-2">Get Started</a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-lg-6 d-none d-lg-block">
+        <img src="{{ url_for('static', filename='images/watermark-hero.svg') }}" alt="Digital Watermarking" class="img-fluid">
+    </div>
+</div>
+
+<div class="row mt-5 pt-5">
+    <div class="col-12 text-center mb-4">
+        <h2 class="fw-bold">Key Features</h2>
+        <p class="lead">Comprehensive digital watermarking and copyright protection</p>
+    </div>
+</div>
+
+<div class="row g-4 py-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title h5 fw-bold">LSB Steganography</h3>
+                <p class="card-text">Invisible watermarking that preserves content quality while embedding ownership information.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title h5 fw-bold">AES-256 Encryption</h3>
+                <p class="card-text">Military-grade encryption protects watermark data from extraction and unauthorized access.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title h5 fw-bold">SHA-3 Hashing</h3>
+                <p class="card-text">Advanced integrity verification ensures watermarks remain intact and detects tampering.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 py-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title h5 fw-bold">Multi-format Support</h3>
+                <p class="card-text">Protect various file formats including PNG, JPG, GIF, BMP, TIFF, and PDF documents.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title h5 fw-bold">Easy Verification</h3>
+                <p class="card-text">Verify ownership, detect tampering, maintain integrity through a secure, user-friendly platform.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title h5 fw-bold">Batch Processing</h3>
+                <p class="card-text">Process multiple files simultaneously with our efficient RESTful verification API.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

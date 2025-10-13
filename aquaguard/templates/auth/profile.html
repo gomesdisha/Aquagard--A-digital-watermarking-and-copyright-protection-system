@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">User Profile</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-md-end">
+                            <strong>Name:</strong>
+                        </div>
+                        <div class="col-md-8">
+                            {{ current_user.name }}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-md-end">
+                            <strong>Email:</strong>
+                        </div>
+                        <div class="col-md-8">
+                            {{ current_user.email }}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-md-end">
+                            <strong>Registration Number:</strong>
+                        </div>
+                        <div class="col-md-8">
+                            {{ current_user.registration_number }}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-md-end">
+                            <strong>Account Created:</strong>
+                        </div>
+                        <div class="col-md-8">
+                            {{ current_user.created_at.strftime('%B %d, %Y') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Verification Result{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header {% if result.status == 'success' %}bg-success{% elif result.status == 'warning' %}bg-warning{% else %}bg-danger{% endif %} text-white">
+                <h4 class="mb-0">Verification Result</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert {% if result.status == 'success' %}alert-success{% elif result.status == 'warning' %}alert-warning{% else %}alert-danger{% endif %}">
+                    <h5>{{ result.message }}</h5>
+                </div>
+                
+                {% if result.status != 'error' or result.integrity != 'Not Protected' %}
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Integrity Status:</th>
+                                <td>
+                                    {% if result.integrity == 'Intact' %}
+                                    <span class="badge bg-success">Intact</span>
+                                    {% elif result.integrity == 'Modified' %}
+                                    <span class="badge bg-warning">Modified</span>
+                                    {% elif result.integrity == 'Compromised' %}
+                                    <span class="badge bg-danger">Compromised</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">{{ result.integrity }}</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% if result.owner %}
+                            <tr>
+                                <th>Owner:</th>
+                                <td>{{ result.owner }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if result.filename %}
+                            <tr>
+                                <th>Original Filename:</th>
+                                <td>{{ result.filename }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if result.timestamp %}
+                            <tr>
+                                <th>Timestamp:</th>
+                                <td>{{ result.timestamp }}</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                
+                <div class="mt-4 text-center">
+                    <a href="{{ url_for('verification.verify_file') }}" class="btn btn-primary">Verify Another File</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
