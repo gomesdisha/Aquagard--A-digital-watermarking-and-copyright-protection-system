@@ -11,7 +11,7 @@ from werkzeug.utils import secure_filename
 watermark_bp = Blueprint('watermark', __name__, url_prefix='/watermark')
 
 def allowed_file(filename):
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'bmp', 'pdf'}
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'bmp', 'pdf', 'wav', 'mp3', 'mp4', 'avi', 'mov', 'mkv', 'docx', 'xlsx', 'pptx'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def is_image_file(filename):
@@ -20,6 +20,23 @@ def is_image_file(filename):
 
 def is_pdf_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'pdf'
+    
+def is_audio_file(filename):
+    AUDIO_EXTENSIONS = {'wav', 'mp3'}
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in AUDIO_EXTENSIONS
+    
+def is_video_file(filename):
+    VIDEO_EXTENSIONS = {'mp4', 'avi', 'mov', 'mkv'}
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in VIDEO_EXTENSIONS
+
+def is_docx_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'docx'
+    
+def is_xlsx_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'xlsx'
+    
+def is_pptx_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'pptx'
 
 @watermark_bp.route('/create', methods=['GET', 'POST'])
 @login_required
@@ -74,6 +91,16 @@ def create_watermark():
                     WatermarkGenerator.embed_watermark_lsb(original_path, watermark_data, watermarked_path, encryption_key)
                 elif is_pdf_file(filename):
                     WatermarkGenerator.embed_watermark_pdf(original_path, watermark_data, watermarked_path, encryption_key)
+                elif is_audio_file(filename):
+                    WatermarkGenerator.embed_watermark_audio(original_path, watermark_data, watermarked_path, encryption_key)
+                elif is_video_file(filename):
+                    WatermarkGenerator.embed_watermark_video(original_path, watermark_data, watermarked_path, encryption_key)
+                elif is_docx_file(filename):
+                    WatermarkGenerator.embed_watermark_docx(original_path, watermark_data, watermarked_path, encryption_key)
+                elif is_xlsx_file(filename):
+                    WatermarkGenerator.embed_watermark_xlsx(original_path, watermark_data, watermarked_path, encryption_key)
+                elif is_pptx_file(filename):
+                    WatermarkGenerator.embed_watermark_pptx(original_path, watermark_data, watermarked_path, encryption_key)
                 else:
                     flash('Unsupported file type', 'danger')
                     return redirect(request.url)

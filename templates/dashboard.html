@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h2>Dashboard</h2>
+        <p>Welcome, {{ current_user.name }}!</p>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Your Dashboard</h4>
+            </div>
+            <div class="card-body">
+                <p>This is a simplified dashboard for the AquaGuard application.</p>
+                <p>The full version would include watermarking and verification features.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

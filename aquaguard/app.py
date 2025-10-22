@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from .models.user import User
 from .models.watermark import Watermark
-from .controllers.auth_controller import auth_bp
+from .controllers.auth_controller import auth
 from .controllers.watermark_controller import watermark_bp
 from .controllers.verification_controller import verification_bp
 from .utils.db import db
@@ -14,7 +14,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-key-for-aquaguard')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI', 'sqlite:///aquaguard.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///instance/aquaguard.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static/uploads')
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
@@ -35,7 +35,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 # Register blueprints
-app.register_blueprint(auth_bp)
+app.register_blueprint(auth)
 app.register_blueprint(watermark_bp)
 app.register_blueprint(verification_bp)
 

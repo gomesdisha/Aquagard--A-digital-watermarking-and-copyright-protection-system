@@ -14,7 +14,30 @@
                     <div class="mb-3">
                         <label for="file" class="form-label">Select File to Watermark</label>
                         <input type="file" class="form-control" id="file" name="file" required>
-                        <div class="form-text">Supported formats: PNG, JPG, JPEG, GIF, BMP, TIFF, PDF</div>
+                        <div class="form-text">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <strong>Images:</strong> PNG, JPG, JPEG, BMP
+                                </div>
+                                <div class="col-md-3">
+                                    <strong>Documents:</strong> PDF, DOCX
+                                </div>
+                                <div class="col-md-3">
+                                    <strong>Spreadsheets:</strong> XLSX
+                                </div>
+                                <div class="col-md-3">
+                                    <strong>Presentations:</strong> PPTX
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <strong>Audio:</strong> WAV, MP3
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>Video:</strong> MP4, AVI, MOV, MKV
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Create Watermark</button>
@@ -31,6 +54,9 @@
                 <p>AquaGuard uses advanced techniques to protect your digital content:</p>
                 <ul>
                     <li><strong>LSB Steganography:</strong> Embeds watermark in the least significant bits of image data</li>
+                    <li><strong>Audio Watermarking:</strong> Embeds watermark in audio files using LSB techniques</li>
+                    <li><strong>Video Watermarking:</strong> Protects videos by watermarking the audio track</li>
+                    <li><strong>Document Watermarking:</strong> Embeds watermark in DOCX, XLSX, and PPTX files</li>
                     <li><strong>AES-256 Encryption:</strong> Military-grade encryption for watermark data</li>
                     <li><strong>SHA-3 Hashing:</strong> Ensures content integrity and detects tampering</li>
                 </ul>
